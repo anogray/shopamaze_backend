@@ -7,6 +7,8 @@ import config from "./config.js";
 // const product = require("./routes/product");
 import {products } from "./routes/product.js";
 import  userRoute  from "./routes/userRoute.js";
+import orderRoute from "./routes/orderRoute.js"
+import payment from "./routes/payment.js";
 
 const app = express();
 app.use(express.json());
@@ -32,6 +34,9 @@ app.get("/",(req,res)=>{
 app.use('/api/users', userRoute);
 // app.use('/api/uploads', uploadRoute);
 app.use("/api/products",products );
+app.use('/api/orders', orderRoute);
+app.use("/api/razorpay", payment);
+
 
 
 app.listen(PORT, ()=> console.log(`Server is running up at ${PORT}`));

@@ -7,7 +7,7 @@ import data from "../data.js";
 import { isAuth, isAdmin} from "../util.js";
 import Product from '../model/productModel.js';
 
-let router = express.Router();
+const router = express.Router();
 
 router.get("/",async(req,res)=>{
   const data = await Product.find({});
