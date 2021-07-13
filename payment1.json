@@ -1,0 +1,60 @@
+{
+    "entity": "event",
+    "account_id": "acc_HW9AACKxYh2KgO",
+    "event": "payment.captured",
+    "contains": [
+        "payment"
+    ],
+    "payload": {
+        "payment": {
+            "entity": {
+                "id": "pay_HXBgTKFi2UbijA",
+                "entity": "payment",
+                "amount": 12500,
+                "currency": "INR",
+                "status": "captured",
+                "order_id": "order_HXBg7af1m7iwVz",
+                "invoice_id": null,
+                "international": false,
+                "method": "card",
+                "amount_refunded": 0,
+                "refund_status": null,
+                "captured": true,
+                "description": "Thank you for nothing. Please give us some exp",
+                "card_id": "card_HXBgTN9KWlf9Cn",
+                "card": {
+                    "id": "card_HXBgTN9KWlf9Cn",
+                    "entity": "card",
+                    "name": "MrTest",
+                    "last4": "1111",
+                    "network": "Visa",
+                    "type": "debit",
+                    "issuer": null,
+                    "international": false,
+                    "emi": false,
+                    "sub_type": "consumer"
+                },
+                "bank": null,
+                "wallet": null,
+                "vpa": null,
+                "email": "sdfdsjfh2@ndsfdf.com",
+                "contact": "+919090909090",
+                "notes": [
+                    "60e96fa8f3d0db3758a2bebd"
+                ],
+                "fee": 250,
+                "tax": 0,
+                "error_code": null,
+                "error_description": null,
+                "error_source": null,
+                "error_step": null,
+                "error_reason": null,
+                "acquirer_data": {
+                    "auth_code": "261202"
+                },
+                "created_at": 1625911245
+            }
+        }
+    },
+    "created_at": 1625911247
+}

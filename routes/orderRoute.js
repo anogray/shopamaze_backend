@@ -5,10 +5,11 @@ import { isAuth, isAdmin } from "../util.js";
 const router = express.Router();
 
 router.get("/", isAuth, async (req, res) => {
-  const orders = await Order.find({}).populate('user');
+  const orders = await Order.find({}).populate('Users');
+  console.log("getting orders",orders);
   res.send(orders);
 });
-router.get("/mine", isAuth, async (req, res) => {
+router.get("/paid", isAuth, async (req, res) => {
   const orders = await Order.find({ user: req.user._id });
   res.send(orders);
 });
@@ -47,23 +48,16 @@ router.post("/", isAuth, async (req, res) => {
   res.status(201).send({ message: "New Order Created", data: newOrderCreated });
 });
 
-router.put("/:id/pay", isAuth, async (req, res) => {
+router.get("/:id/pay", isAuth, async (req, res) => {
+  console.log("got req success", req);
+
   const order = await Order.findById(req.params.id);
+
+  console.log("got success",order);
   if (order) {
-    order.isPaid = true;
-    order.paidAt = Date.now();
-    order.payment = {
-      paymentMethod: 'paypal',
-      paymentResult: {
-        payerID: req.body.payerID,
-        orderID: req.body.orderID,
-        paymentID: req.body.paymentID
-      }
-    }
-    const updatedOrder = await order.save();
-    res.send({ message: 'Order Paid.', order: updatedOrder });
+    return res.status(200).json({message:"Ordered successfully !", order : order});
   } else {
-    res.status(404).send({ message: 'Order not found.' })
+    return res.status(404).send({ message: 'Order not found.' });
   }
 });
 

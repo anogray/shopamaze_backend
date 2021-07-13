@@ -7,8 +7,15 @@ const shippingSchema = {
   country: { type: String, required: true },
 };
 
+const paymentOrderCreated  = {
+  razorpayOrderID: { type : String},
+	receipt: { type : String},
+  paymentId: {type: String}
+}
+
 const paymentSchema = {
-  paymentMethod: { type: String, required: true }
+  paymentMethod: { type: String, required: true },
+  paymentResult: paymentOrderCreated
 };
 
 const orderItemSchema = new mongoose.Schema({

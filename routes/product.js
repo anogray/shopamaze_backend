@@ -12,7 +12,6 @@ const router = express.Router();
 router.get("/",async(req,res)=>{
   const data = await Product.find({});
   console.log("getalldata",data);
-  res.setHeader("noauth","nope");
     res.status(200).json({"data":data});
 })
 
@@ -79,5 +78,9 @@ router.delete('/:id', isAuth, isAdmin, async (req, res) => {
     }
     return res.status(500).send({ message: ' Error in Updating Product.' });
   });
+
+  router.post("/ordered", async(req,res)=>{
+    
+  })
 
 export { router as products };
