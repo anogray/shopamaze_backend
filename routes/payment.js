@@ -43,7 +43,7 @@ router.post('/', async (req, res) => {
 		  }
 		
 		  const updatedOrder = await ordered.save();
-		 // console.log(" ordered /", updatedOrder)
+		  console.log(" ordered /", updatedOrder)
 		  
 		res.json({
 			id: response.id,
@@ -84,6 +84,7 @@ router.post("/verification", async(req,res)=>{
 			console.log("ordered to verify",ordered);
 			ordered.isPaid = true;
 			ordered.payment.paymentResult.paymentId = req.body.payload.payment.entity.id;
+			// ordered.payment.paymentResult.receipt =req.body.payload.payment.entity.id;
 			const verifiedOrder = await ordered.save();
 			console.log("verifiedOrder",verifiedOrder);
 			paymentsuccess = verifiedOrder;
