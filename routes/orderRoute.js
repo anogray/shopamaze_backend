@@ -10,7 +10,7 @@ router.get("/", isAuth, async (req, res) => {
   res.send(orders);
 });
 router.get("/paid", isAuth, async (req, res) => {
-  const orders = await Order.find({ user: req.user._id });
+  const orders = await Order.find({ user: req.user._id }).sort({createdAt:-1});
   res.send(orders);
 });
 
@@ -60,5 +60,7 @@ router.get("/:id/pay", isAuth, async (req, res) => {
     return res.status(404).send({ message: 'Order not found.' });
   }
 });
+
+
 
 export  default router;

@@ -43,7 +43,7 @@ router.post('/', async (req, res) => {
 		  }
 		
 		  const updatedOrder = await ordered.save();
-		  console.log(" ordered /", updatedOrder)
+		 // console.log(" ordered /", updatedOrder)
 		  
 		res.json({
 			id: response.id,
@@ -57,6 +57,7 @@ router.post('/', async (req, res) => {
 })
 
 router.post("/verification", async(req,res)=>{
+	console.log("verified api")
 
 	let paymentsuccess = '';
 	try{
@@ -74,7 +75,7 @@ router.post("/verification", async(req,res)=>{
 		console.log(digest, req.headers['x-razorpay-signature'])
 	
 		if (digest === req.headers['x-razorpay-signature']) {
-			console.log('request is legit')
+			// console.log('request is legit',req.body.payload.payment)
 			// process it
 			// fs.writeFileSync('payment1.json', JSON.stringify(req.body, null, 4))
 	
@@ -84,7 +85,7 @@ router.post("/verification", async(req,res)=>{
 			console.log("ordered to verify",ordered);
 			ordered.isPaid = true;
 			ordered.payment.paymentResult.paymentId = req.body.payload.payment.entity.id;
-			// ordered.payment.paymentResult.receipt =req.body.payload.payment.entity.id;
+			ordered.payment.paymentMethod =req.body.payload.payment.entity.method;
 			const verifiedOrder = await ordered.save();
 			console.log("verifiedOrder",verifiedOrder);
 			paymentsuccess = verifiedOrder;

@@ -9,6 +9,10 @@ import {products } from "./routes/product.js";
 import  userRoute  from "./routes/userRoute.js";
 import orderRoute from "./routes/orderRoute.js"
 import payment from "./routes/payment.js";
+import download from "./routes/downloads.js";
+import path from 'path';
+const __dirname = path.resolve();
+
 
 const app = express();
 app.use(express.json());
@@ -16,6 +20,9 @@ app.use(express.json());
 dotenv.config();
 app.use(morgan('tiny'));
 app.use(cors());
+
+app.use('/invoices',express.static(path.join(__dirname, 'public/invoices')));
+
 
 mongoose.connect(config.MONGODB_URL ,  
 { useNewUrlParser: true , useUnifiedTopology: true }, (err)=>{
@@ -36,6 +43,7 @@ app.use('/api/users', userRoute);
 app.use("/api/products",products );
 app.use('/api/orders', orderRoute);
 app.use("/api/razorpay", payment);
+app.use("/api/download", download);
 
 
 
