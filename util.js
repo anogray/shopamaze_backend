@@ -2,7 +2,8 @@ import jwt from 'jsonwebtoken';
 import config from './config.js';
 import PDFDocument  from "pdfkit";
 import fs from "fs";
-
+import path from 'path';
+const __dirname = path.resolve();
 
 
 
@@ -56,7 +57,7 @@ const createPdfInvoice = (invoice)=>{
   console.log("pipeinvoice",invoice.invoice);
   const doc = new PDFDocument({ margin: 50 });
     // doc.pipe(fs.createWriteStream(`${Date.now()}.pdf`));
-    let strcheck = `./public/invoices/${invoice.invoice}_output.pdf`;
+    let strcheck = `${__dirname}/public/invoices/${invoice.invoice}_output.pdf`;
     console.log({strcheck});
     doc.pipe(fs.createWriteStream(`./public/invoices/${invoice.invoice}_output.pdf`));
     // doc.fontSize(18).text('shopamaze', 50, 100);
