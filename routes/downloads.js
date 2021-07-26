@@ -19,14 +19,15 @@ try{
 
     // console.log("got success",order);
      
-    createPdfInvoice(orderedDetails);
+    //createPdfInvoice(orderedDetails);
+
     console.log("before toInvoice download",orderedDetails.invoice);
 
     if(toInvoice=="download"){
       try {
-        if (fs.existsSync(strcheck)) {
-          console.log("yes exits on path");
-        }
+        // if (fs.existsSync(strcheck)) {
+        //   console.log("yes exits on path");
+        // }
       } catch(err) {
         console.error("no file on path exists",err)
       }
