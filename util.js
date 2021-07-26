@@ -66,7 +66,7 @@ const createPdfInvoice = (invoice)=>{
       console.error("no file on path exists",err)
     }
     console.log({strcheck});
-    doc.pipe(fs.createWriteStream(`./public/invoices/${invoice.invoice}_output.pdf`));
+    doc.pipe(fs.createWriteStream(`${__dirname}/public/invoices/${invoice.invoice}_output.pdf`));
     // doc.fontSize(18).text('shopamaze', 50, 100);
     // doc.fontSize(18).text('Some text with an embedded font!', 100, 200);
     // let datestr = order.createdAt.toDateString().split(" ")
