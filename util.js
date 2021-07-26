@@ -58,6 +58,13 @@ const createPdfInvoice = (invoice)=>{
   const doc = new PDFDocument({ margin: 50 });
     // doc.pipe(fs.createWriteStream(`${Date.now()}.pdf`));
     let strcheck = `${__dirname}/public/invoices/${invoice.invoice}_output.pdf`;
+    try {
+      if (fs.existsSync(strcheck)) {
+        console.log("yes exits on path");
+      }
+    } catch(err) {
+      console.error("no file on path exists",err)
+    }
     console.log({strcheck});
     doc.pipe(fs.createWriteStream(`./public/invoices/${invoice.invoice}_output.pdf`));
     // doc.fontSize(18).text('shopamaze', 50, 100);
