@@ -86,6 +86,10 @@ router.post("/verification", async(req,res)=>{
 			ordered.isPaid = true;
 			ordered.payment.paymentResult.paymentId = req.body.payload.payment.entity.id;
 			ordered.payment.paymentMethod =req.body.payload.payment.entity.method;
+			
+			const countInvoice = await Order.find({"payment.paymentResult.paymentId" :{ $exists:"true"}}).count();
+			console.log({countInvoice});
+			ordered.invoice = "INV-"+countInvoice;
 			const verifiedOrder = await ordered.save();
 			console.log("verifiedOrder",verifiedOrder);
 			paymentsuccess = verifiedOrder;

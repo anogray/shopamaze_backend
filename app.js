@@ -12,6 +12,7 @@ import payment from "./routes/payment.js";
 import download from "./routes/downloads.js";
 import path from 'path';
 const __dirname = path.resolve();
+console.log("__dirname",__dirname,process.cwd());
 
 
 const app = express();
