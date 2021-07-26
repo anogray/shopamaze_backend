@@ -14,11 +14,11 @@ router.post("/",isAuth,async(req,res)=>{
 try{
   const {toInvoice} = req.body;
     const orderedDetails = await Order.findById(req.body.orderId);
-    // console.log("orderedDetails",orderedDetails);
     //console.log("__dirname",__dirname,process.cwd());
 
-    let strcheck = `${__dirname}/public/invoices/${invoice.invoice}_output.pdf`;
-     
+    let strcheck = `${__dirname}/public/invoices/${orderedDetails.invoice}_output.pdf`;
+    console.log("orderedDetails",orderedDetails,{strcheck});
+
     createPdfInvoice(orderedDetails);
 
     console.log("before toInvoice download",orderedDetails.invoice);
