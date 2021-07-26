@@ -33,8 +33,7 @@ try{
       }
          console.log("toInvoice download ",orderedDetails.invoice);
 
-      // let file = "/invoices"+ `/${orderedDetails.invoice}_output.pdf`;
-      let file = "/invoices"+ `/logo.png`;
+      let file = "/invoices"+ `/${orderedDetails.invoice}_output.pdf`;
       return res.status(200).json({"success":"true",fileUrl:`${file}`});
     }else{
       let resp = await mailer(orderedDetails.invoice);
