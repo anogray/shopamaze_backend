@@ -6,7 +6,7 @@ const __dirname = path.resolve();
 
 // router.post("/", (req,res)=>{
 const mailer = async(orderId)=> {
-    console.log("inside mailer",orderId)
+    console.log("inside mailer",orderId,config.MAIL_USERNAME,config.MAIL_PASS)
 
         
         const transporter = nodemailer.createTransport({
