@@ -13,8 +13,8 @@ const mailer = async(orderId)=> {
             port: 465,               // true for 465, false for other ports
             host: "smtp.gmail.com",
             auth: {
-                    user: config.MAIL_USERNAME,
-                    pass: config.MAIL_PASS,
+                    user: `${config.MAIL_USERNAME}`,
+                    pass: `${config.MAIL_PASS}`,
                 },
             secure: true,
             });
