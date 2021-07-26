@@ -16,7 +16,7 @@ const mailer = async(orderId)=> {
                     user: config.MAIL_USERNAME,
                     pass: config.MAIL_PASS,
                 },
-            // secure: true,
+            secure: true,
             });
 
             // const transporter = nodemailer.createTransport(config.MAIL);
