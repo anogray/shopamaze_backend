@@ -30,7 +30,7 @@ try{
       } catch(err) {
         console.error("no file on path exists",err)
       }
-         console.log("toInvoice download",orderedDetails.invoice);
+         console.log("toInvoice download ",orderedDetails.invoice);
 
       var file = "/invoices"+ `/${orderedDetails.invoice}_output.pdf`;
       return res.status(200).json({"success":"true",fileUrl:`${file}`});
