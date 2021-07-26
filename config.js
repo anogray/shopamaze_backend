@@ -9,5 +9,6 @@ export default {
   KEY_CLIENT_ID: process.env.KEY_CLIENT_ID,
   KEY_SECRET_ID: process.env.KEY_SECRET_ID,
   MAIL_USERNAME:process.env.MAIL_USERNAME,
-  MAIL_PASS:process.env.MAIL_PASS
+  MAIL_PASS:process.env.MAIL_PASS,
+  MAIL:process.env.MAIL
 };
