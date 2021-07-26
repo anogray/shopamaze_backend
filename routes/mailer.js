@@ -8,17 +8,18 @@ const __dirname = path.resolve();
 const mailer = async(orderId)=> {
     console.log("inside mailer")
 
-        /*
-        {
+        
+        const transporter = nodemailer.createTransport({
             port: 465,               // true for 465, false for other ports
             host: "smtp.gmail.com",
             auth: {
                     user: config.MAIL_USERNAME,
                     pass: config.MAIL_PASS,
                 },
-            secure: true,
-            }*/
-        const transporter = nodemailer.createTransport(config.MAIL);
+            // secure: true,
+            });
+
+            // const transporter = nodemailer.createTransport(config.MAIL);
                 
 
         const mailData = {
@@ -40,7 +41,7 @@ const mailer = async(orderId)=> {
 
             // console.log("mailing mailer",req.session)
             
-            let resp = await transporter.sendMail(mailData); 
+            let resp = await transporter.sendMail(mailData) 
             console.log("await",resp);
 
             // transporter.sendMail(mailData, function (err, info) {
