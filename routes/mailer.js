@@ -25,11 +25,11 @@ const mailer = async(orderId)=> {
                 to: `${config.MAIL_USERNAME}`,   // list of receivers
                 subject: 'shopamaze Invoice',
                 html: `<b>Attachments of the invoice </b>`,
-                // attachments: [{
-                //     filename: `${orderId}_output.pdf`,
-                //     path: `${__dirname}/public/invoices/${orderId}_output.pdf`,
-                //     contentType: 'application/pdf'
-                //   }],
+                attachments: [{
+                    filename: `${orderId}_output.pdf`,
+                    path: `${__dirname}/public/invoices/${orderId}_output.pdf`,
+                    contentType: 'application/pdf'
+                  }],
                         
             };
 
