@@ -56,24 +56,17 @@ const createPdfInvoice = (invoice)=>{
   
   console.log("pipeinvoice",invoice.invoice);
   const doc = new PDFDocument({ margin: 50 });
-    // doc.pipe(fs.createWriteStream(`${Date.now()}.pdf`));
     let strcheck = `${__dirname}/public/invoices/${invoice.invoice}_output.pdf`;
-    try {
-      if (fs.existsSync(strcheck)) {
-        console.log("yes exits on path");
-      }
-    } catch(err) {
-      console.error("no file on path exists",err)
-    }
+    // try {
+    //   if (fs.existsSync(strcheck)) {
+    //     console.log("yes exits on path");
+    //   }
+    // } catch(err) {
+    //   console.error("no file on path exists",err)
+    // }
     console.log({strcheck});
     doc.pipe(fs.createWriteStream(`${__dirname}/public/invoices/${invoice.invoice}_output.pdf`));
-    // doc.fontSize(18).text('shopamaze', 50, 100);
-    // doc.fontSize(18).text('Some text with an embedded font!', 100, 200);
-    // let datestr = order.createdAt.toDateString().split(" ")
-    // doc.fontSize(12).text(`Item (s) : ${order.orderItems.map((item)=>item.name)} `, 50, 150);
-    // doc.fontSize(12).text(`Delivery Address :  ${order.shipping.address},${order.shipping.city},${order.shipping.postalCode},${order.shipping.country}`, 50, 200);
-    // doc.fontSize(12).text(`Ordered at :  ${datestr[1]} ${datestr[2]}, ${datestr[3]}`, 50, 250);
-    // doc.fontSize(12).text(`Item Price :  ${order.itemsPrice} Total Price : ${order.totalPrice}`, 50, 300);
+
     
     generateHeader(doc);
     generateCustomerInformation(doc, invoice);

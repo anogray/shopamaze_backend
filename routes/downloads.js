@@ -9,29 +9,31 @@ const __dirname = path.resolve();
 
 const router = express.Router();
 
-router.post("/",async(req,res)=>{
+router.post("/",isAuth,async(req,res)=>{
      console.log("reqbody",req.body);
 try{
   const {toInvoice} = req.body;
     const orderedDetails = await Order.findById(req.body.orderId);
     // console.log("orderedDetails",orderedDetails);
-    console.log("__dirname",__dirname,process.cwd());
+    //console.log("__dirname",__dirname,process.cwd());
 
-    // console.log("got success",order);
+    let strcheck = `${__dirname}/public/invoices/${invoice.invoice}_output.pdf`;
      
-    //createPdfInvoice(orderedDetails);
+    createPdfInvoice(orderedDetails);
 
     console.log("before toInvoice download",orderedDetails.invoice);
 
     if(toInvoice=="download"){
       try {
-        // if (fs.existsSync(strcheck)) {
-        //   console.log("yes exits on path");
-        // }
+        if (fs.existsSync(strcheck)) {
+          console.log("yes file exits on path");
+        }
       } catch(err) {
-        console.error("no file on path exists",err)
+        console.error("no file presents on path exists",err)
+        return res.status(200).json({"success":"true",fileUrl:false});
       }
-         console.log("toInvoice download ",orderedDetails.invoice);
+      
+      //  console.log("toInvoice download ",orderedDetails.invoice);
 
       let file = "/invoices"+ `/${orderedDetails.invoice}_output.pdf`;
       return res.status(200).json({"success":"true",fileUrl:`${file}`});
@@ -40,12 +42,6 @@ try{
      return res.status(200).json({"success":"true",email:true});
     }
 
-    console.log("see if someone can hit me");
-    
-      
-    
-  
-    console.log("after",resp);
 
     //var file = __dirname + "\\" + `public\\invoices\\${orderedDetails._id}_output.pdf`;
      //var file = "localhost:3004/invoices"+ `/${orderedDetails._id}_output.pdf`;
@@ -53,7 +49,6 @@ try{
     //  var file =fs.readFileSync('./output.pdf');
     //  var file =fs.readFileSync(`./public/invoices/${orderedDetails._id}_output.pdf`,"utf-8");
      //doc.pipe(fs.createWriteStream(`./public/invoices/${orderedDetails._id}_output.pdf`));
-     console.log("op",file);
 
 
 // res.download(file, function (err) {
@@ -66,6 +61,7 @@ try{
 // });
 }catch(err){
 console.log("error pdf",err);
+return res.status(200).json({"success":"false",msg:err.message});
 }
 
 
