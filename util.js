@@ -156,7 +156,30 @@ const createPdfInvoice = (invoice)=>{
       generateHr(doc, position + 20);
     }
 
-    const subtotalPosition = invoiceTableTop + (i + 1) * 30;
+    let subtotalPosition = invoiceTableTop + (i + 1) * 30;
+    
+    generateTableRow(
+      doc,
+      subtotalPosition,
+      "",
+      "",
+      "Shipping : ",
+      formatCurrency(invoice.shippingPrice)
+    );
+
+     subtotalPosition = subtotalPosition +  20;
+
+    generateTableRow(
+      doc,
+      subtotalPosition,
+      "",
+      "",
+      "Tax : ",
+      formatCurrency(invoice.taxPrice)
+    );
+
+    subtotalPosition = subtotalPosition +  20;
+
     generateTableRow(
       doc,
       subtotalPosition,
@@ -165,6 +188,9 @@ const createPdfInvoice = (invoice)=>{
       "Subtotal : ",
       formatCurrency(invoice.totalPrice)
     );
+
+    // generateHr(doc, subtotalPosition + 20);
+
 
     
   }

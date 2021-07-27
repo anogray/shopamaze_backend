@@ -24,7 +24,7 @@ const mailer = async(orderId)=> {
         const mailData = {
             from: `${config.MAIL_USERNAME}`,  // sender address
                 to: `${config.MAIL_USERNAME}`,   // list of receivers
-                subject: 'shopamaze Invoice',
+                subject: 'Shopamaze Invoice',
                 html: `<b>Attachments of the invoice </b>`,
                 attachments: [{
                     filename: `${orderId}_output.pdf`,
